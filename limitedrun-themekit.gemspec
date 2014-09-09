@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Howard Wilson"]
   gem.email         = ["howard@watsonbox.net"]
   gem.description   = %q{Toolkit for developing Limited Run themes locally}
-  gem.summary       = %q{Toolkit for developing Limited Run themes locally. Because Limited Run themes are made up of liquid templates, they easily can't be worked on offline. This gem renders the templates locally using mock data to speed up development.}
+  gem.summary       = %q{Toolkit for developing Limited Run themes locally. Because Limited Run themes are made up of liquid templates, they can't easily be worked on offline. This gem renders the templates locally using mock data to speed up development.}
   gem.homepage      = ""
   gem.license       = "MIT"
 
