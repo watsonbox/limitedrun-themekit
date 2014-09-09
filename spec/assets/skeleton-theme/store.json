@@ -1,5 +1,8 @@
 {
   "name": "Pinna Records",
+  "mailbox": {
+    "title": "Contact"
+  },
   "products": [
     {
       "name": "Eliane Lust - Entangoed",
@@ -28,5 +31,71 @@
         "subtitle": ""
       }
     }
-  ]
+  ],
+  "categories": [
+    {
+      "name": "All",
+      "url": "/categories/all"
+    }
+  ],
+  "pages": [
+    {
+      "title": "News",
+      "path": "/news"
+    },
+    {
+      "title": "Artists",
+      "path": "/artists"
+    },
+    {
+      "title": "Contact",
+      "path": "/contact"
+    }
+  ],
+  "roster": {
+    "title": "Artists",
+    "items": [
+      {
+        "name": "Eliane Lust",
+        "url": "/artists/eliane",
+        "description": "<p>Internationally acclaimed American concert pianist Eliane Lust was raised in Belgium, where she began playing piano at age 5. As a girl, she performed the music of Darius Milhaud for the composer; it was Milhaud who suggested that she should go into music professionally. Through her principle teachers, Leonard Shure and György Sebök, she is tied directly to the great classical German and Hungarian musical traditions of Ludwig van Beethoven and Franz Liszt. She has collaborated with many contemporary composers, including John Cage, Leon Kirchner and Frederic Rzewski.</p>",
+        "images": [
+          {
+            "url": "http://s0.limitedrun.com/images/1086198/eliane-lust-by-margaretta-k-mitchell-300dpi.jpg",
+            "v200_url": "http://s0.limitedrun.com/images/1086198/v200_eliane-lust-by-margaretta-k-mitchell-300dpi.jpg",
+            "v600_url": "http://s0.limitedrun.com/images/1086198/v600_eliane-lust-by-margaretta-k-mitchell-300dpi.jpg"
+          }
+        ],
+        "links": [
+          {
+            "name": "Website",
+            "url": "http://elianelust.com/"
+          },
+          {
+            "name": "Facebook",
+            "url": "https://www.facebook.com/ElianeLu"
+          }
+        ]
+      }
+    ]
+  },
+  "news": {
+    "items": [
+      {
+        "title": "Sarah Cahill's Pattern of Plants Out Sep 16th (Preorder Now!)",
+        "published_at": "12-08-2014",
+        "body": "<p>On September 16, 2014, Pinna Records will release a 2-disc set by Sarah Cahill, performing selections from Mamoru Fujieda's magnum opus Patterns of Plants.</p><p>These pieces, composed between 1996 and 2011, elaborate on melodic patterns based on readings of the electrical activity in living plants. They have been performed on a variety of instruments, including the traditional Japanese koto and shō, in both solo and ensemble settings, but until now, no solo piano recording has been available outside Japan.</p><p>This set, featuring the \"unabashedly gorgeous\" The Olive Branch Speaks, commissioned by the pianist for her A Sweeter Music project, is lavishly packaged and is accompanied by essays from both the composer and performer.</p><p>Patterns of Plants is now available for preorder.</p>"
+      },
+      {
+        "title": "Entangoed on Spotify and Rdio",
+        "published_at": "18-03-2014",
+        "body": "<p>You can now listen to Entangoed on Spotify! It's on Rdio too!</p>"
+      },
+      {
+        "title": "Entangoed Now Available for Download",
+        "published_at": "02-12-2013",
+        "body": "<p>Eliane Lust's Entangoed EP is now available as a 320 kbps MP3.  This is super-high audio quality, costs $2 less than the CD, and you can download and listen to it as soon as you've purchased.  Enjoy!</p>"
+      }
+    ]
+  }
 }

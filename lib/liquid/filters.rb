@@ -29,7 +29,11 @@ module Liquid
     def script_tag(input)
       return '' if input.nil?
 
-      %{<script src="/#{ThemeKit::PATHS[:javascripts] + "/" + input}" type="text/javascript"></script>}
+      %{<script src="/#{Limitedrun::Themekit::Config.javascripts_dir + "/" + input}" type="text/javascript"></script>}
+    end
+
+    def img_tag(input, klass)
+      %{<img src="#{input}" class="#{klass}" />}
     end
 
     def link_to_news_item(input)
@@ -38,6 +42,14 @@ module Liquid
 
     def link_to_page(input)
       %{<a href="#{input['path']}">#{input['title']}</a>}
+    end
+
+    def link_to_category(input)
+      %{<a href="#{input[:url]}">#{input[:name]}</a>}
+    end
+
+    def link_to_roster_item(input)
+      %{<a href="#{input[:url]}">#{input[:name]}</a>}
     end
   end
 end

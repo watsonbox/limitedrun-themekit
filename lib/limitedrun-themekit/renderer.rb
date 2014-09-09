@@ -1,23 +1,27 @@
+require 'active_support/core_ext/hash/keys'
 require 'liquid'
 require 'liquid/tags/paginate'
+require 'liquid/tags/contact_form'
+require 'liquid/tags/captcha'
+require 'liquid/tags/lr_include'
 require 'liquid/filters'
 require 'hashie'
 require 'json'
 
 module Limitedrun
   module Themekit
-    class Renderer < Struct.new(:theme_path)
+    class Renderer < Struct.new(:theme_path, :request_path)
       def render(template, template_assigns = nil)
         assigns = global_assigns
 
         if template_assigns
           template_assigns.each_key do |k|
             unless template_assigns[k].is_a?(Hashie::Mash)
-              template_assigns[k] = Hashie::Mash.new(template_assigns[k])
+              template_assigns[k] = Hashie::Mash.new(instance_eval &template_assigns[k])
             end
           end
 
-          assigns.merge!(global_assigns.stringify_keys)
+          assigns.merge!(template_assigns.stringify_keys)
         end
 
         layout = parse_template File.join(Limitedrun::Themekit::Config.layouts_dir, 'default.html')

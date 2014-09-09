@@ -2,9 +2,13 @@ module Limitedrun
   module Themekit
     class Config
       class << self
-        attr_accessor :theme_path
+        attr_writer :theme_path
 
-        DIRS = [:configs_dir, :layouts_dir, :templates_dir, :stylesheets_dir, :javascripts_dir]
+        def theme_path
+          @theme_path || '.'
+        end
+
+        DIRS = [:configs_dir, :layouts_dir, :templates_dir, :stylesheets_dir, :javascripts_dir, :snippets_dir]
         attr_accessor *DIRS
 
         # Define accessors for directories along with defaults e.g. #configs_dir -> 'configs'
