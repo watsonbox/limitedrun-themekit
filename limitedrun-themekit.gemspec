@@ -25,4 +25,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency "sinatra", "~> 1.4.0"
   gem.add_dependency "activesupport", ">= 4.0"
   gem.add_dependency "hashie", "~> 3.3.0"
+  gem.add_dependency "liquid", "~> 2.6.0"
 end

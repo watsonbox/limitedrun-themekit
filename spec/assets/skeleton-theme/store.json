@@ -1,0 +1,32 @@
+{
+  "name": "Pinna Records",
+  "products": [
+    {
+      "name": "Eliane Lust - Entangoed",
+      "description": "<h6>Pinna 1</h6><p class=\"subheading\">Entangoed • Eliane Lust</p><p>Six tangos for piano solo performed by Eliane Lust.</p><p>1. Robert Elkjer: En-tango-ed<br/>2. Erwin Schulhoff: 5 études de jazz, IV: Tango<br/>3. Scott Pender: Tango: Ms. Jackson Dances for the People<br/>4. William Schimmel: Fromage Dangereux<br/>5. Frederic Rzewski: Steptangle<br/>6. Dane Rudhyar: Tango d'Antan</p>",
+      "url": "/products/entangoed",
+      "images": [
+        {
+          "v200_url": "http://s0.limitedrun.com/images/1085790/v200_pinna-1-cover.jpg",
+          "v300_url": "http://s0.limitedrun.com/images/1085790/v300_pinna-1-cover.jpg",
+          "v600_url": "http://s0.limitedrun.com/images/1085790/v600_pinna-1-cover.jpg"
+        }
+      ],
+      "variations": [
+        {
+          "available?": true,
+          "name": "Full Album",
+          "price": "$20.00"
+        }
+      ],
+      "available?": true,
+      "price_range": "$20.00",
+      "soundcloud_playlist_id": 49270298,
+      "custom": {
+        "title": "",
+        "banner-text": "",
+        "subtitle": ""
+      }
+    }
+  ]
+}
