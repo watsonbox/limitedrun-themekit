@@ -1,5 +1,6 @@
 require 'liquid'
 require 'liquid/tags/paginate'
+require 'liquid/filters'
 require 'hashie'
 require 'json'
 
@@ -23,6 +24,10 @@ module Limitedrun
         template = parse_template File.join(Limitedrun::Themekit::Config.templates_dir, template)
 
         layout.render(assigns.merge('content' => template.render(assigns)))
+      end
+
+      def render_string(string)
+        Liquid::Template.parse(string).render('config' => theme_config)
       end
 
       protected
