@@ -1,0 +1,888 @@
+/*
+  HTML5 Reset :: style.css
+  ----------------------------------------------------------
+	We have learned much from/been inspired by/taken code where offered from:
+	
+	Eric Meyer					:: http://ericmeyer.com
+	HTML5 Doctor				:: http://html5doctor.com
+	and the HTML5 Boilerplate	:: http://html5boilerplate.com
+	
+-------------------------------------------------------------------------------*/
+
+/* Let's default this puppy out
+-------------------------------------------------------------------------------*/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, menu, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}									
+
+article, aside, figure, footer, header, hgroup, nav, section {display: block;}
+
+/* Responsive images and other embedded objects
+   Note: keeping IMG here will cause problems if you're using foreground images as sprites, like, say for Google Maps custom placemarkers. 
+   There has been a report of problems with standard Google maps as well, but we haven't been able to duplicate or diagnose the issue. */
+img,
+object,
+embed {max-width: 100%;}
+
+/* force a vertical scrollbar to prevent a jumpy page */
+html {overflow-y: scroll;}
+
+/* we use a lot of ULs that aren't bulleted. 
+	don't forget to restore the bullets within content. */
+ul {list-style: none;}
+
+blockquote, q {quotes: none;}
+
+blockquote:before, 
+blockquote:after, 
+q:before, 
+q:after {content: ''; content: none;}
+
+a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+
+del {text-decoration: line-through;}
+
+abbr[title], dfn[title] {border-bottom: 1px dotted #000; cursor: help;}
+
+/* tables still need cellspacing="0" in the markup */
+table {border-collapse: collapse; border-spacing: 0;}
+th {font-weight: bold; vertical-align: bottom;}
+td {font-weight: normal; vertical-align: top;}
+
+hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+
+input, select {vertical-align: middle;}
+
+pre {
+	white-space: pre; /* CSS2 */
+	white-space: pre-wrap; /* CSS 2.1 */
+	white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+	word-wrap: break-word; /* IE */
+}
+
+input[type="radio"] {vertical-align: text-bottom;}
+input[type="checkbox"] {vertical-align: bottom; *vertical-align: baseline;}
+.ie6 input {vertical-align: text-bottom;}
+
+select, input, textarea {font: 99% sans-serif;}
+
+table {font-size: inherit; font: 100%;}
+ 
+/* Accessible focus treatment
+	people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active {outline: none;}
+
+small {font-size: 85%;}
+
+strong, th {font-weight: bold;}
+
+td, td img {vertical-align: top;} 
+
+/* Make sure sup and sub don't screw with your line-heights
+	gist.github.com/413930 */
+sub, sup {font-size: 75%; line-height: 0; position: relative;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+
+/* standardize any monospaced elements */
+pre, code, kbd, samp {font-family: monospace, sans-serif;}
+
+/* hand cursor on clickable elements */
+.clickable,
+label, 
+input[type=button], 
+input[type=submit], 
+button {cursor: pointer;}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea {margin: 0;}
+
+/* make buttons play nice in IE */
+button {width: auto; overflow: visible;}
+ 
+/* scale images in IE7 more attractively */
+.ie7 img {-ms-interpolation-mode: bicubic;}
+
+/* prevent BG image flicker upon hover */
+.ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));}
+
+/* let's clear some floats */
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.clearfix:after { clear: both; }  
+.clearfix { zoom: 1; }  
+
+
+
+/* Ok, this is where the fun starts.
+-------------------------------------------------------------------------------*/
+
+/* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
+body {font: 13px Helmet, Freesans, sans-serif;}
+
+/* using local fonts? make sure to read up on Paul Irish's 
+	Bulletproof @font-face syntax: http://mky.be/font-face/bulletproof/ */
+
+/* we like off-black for text */
+body, select, input, textarea {color: #333;}
+
+a {color: #03f;}
+a:hover {color: #69f;}
+
+/* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
+::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
+::selection {background: #fcd700; color: #fff; text-shadow: none;} 
+
+/*	j.mp/webkit-tap-highlight-color */
+a:link {-webkit-tap-highlight-color: #fcd700;} 
+
+ins {background-color: #fcd700; color: #000; text-decoration: none;}
+mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
+
+/* Store CSS */
+
+{% assign background_color                 = config['background_color'] %}
+{% assign background_font_color            = config['background_font_color'] %}
+{% assign background_link_color            = config['background_link_color'] %}
+{% assign background_link_hover_color      = config['background_link_hover_color'] %}
+
+{% assign view_cart_background_color       = config['view_cart_background_color'] %}
+{% assign view_cart_background_hover_color = config['view_cart_background_hover_color'] %}
+{% assign view_cart_font_color             = config['view_cart_font_color'] %}
+{% assign view_cart_font_hover_color       = config['view_cart_font_hover_color'] %}
+
+{% assign sidebar_background_color         = config['sidebar_background_color'] %}
+{% assign sidebar_highlight_color          = config['sidebar_highlight_color'] %}
+{% assign sidebar_separator_color          = config['sidebar_separator_color'] %}
+{% assign sidebar_font_color               = config['sidebar_font_color'] %}
+{% assign sidebar_link_color               = config['sidebar_link_color'] %}
+{% assign sidebar_link_hover_color         = config['sidebar_link_hover_color'] %}
+
+{% assign content_background_color         = config['content_background_color'] %}
+{% assign content_outline_color            = config['content_outline_color'] %}
+{% assign content_font_color               = config['content_font_color'] %}
+{% assign content_link_color               = config['content_link_color'] %}
+{% assign content_link_hover_color         = config['content_link_hover_color'] %}
+
+
+* {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  {% if config['background_image_url'] %}
+    background: {{ background_color }} url('{{ config['background_image_url'] }}') fixed {% unless config['background_image_repeat'] %}no-{% endunless %}repeat;
+  {% else %}
+    background-color: {{ background_color }};
+  {% endif %}
+  color: {{ background_font_color }};
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 13px;
+}
+
+p {
+  margin: 10px 0;
+}
+
+a {
+  color: {{ background_link_color }};
+  text-decoration: none;
+}
+
+a:hover {
+  color: {{ background_link_hover_color }};
+}
+
+hr {
+  border: 0px;
+  border-top: 1px solid {{ content_outline_color }};
+  margin: 25px 0;
+}
+
+select {
+  font-size: 12px;
+  line-height 16px;
+}
+
+.btn {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+#cart {
+  background-color: {{ view_cart_background_color }};
+  color: {{ view_cart_font_color }};
+  cursor: pointer;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: fixed;
+  right: 15px;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+}
+
+#cart:hover {
+  background-color: {{ view_cart_background_hover_color }};
+  color: {{ view_cart_font_hover_color }};
+}
+
+#availability-request {
+  background-color: {{ view_cart_background_color }};
+  bottom: -100px;
+  color: {{ view_cart_font_color }};
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 6px 16px 8px 16px;
+  position: fixed;
+  right: 15px;
+  text-align: center;
+  width: 156px;
+  z-index: 999;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+}
+
+#availability-request.reveal {
+  bottom: 0;
+}
+
+#availability-request:hover {
+  background-color: {{ view_cart_background_hover_color }};
+  color: {{ view_cart_font_hover_color }};
+}
+
+#container {
+  margin: 0 auto;
+  width: 960px;
+}
+
+#container header {
+  margin: 35px 0 20px 0;
+  padding: 0 5px;
+}
+
+#container header div.center {
+  text-align: center;
+}
+
+#container header h1 {
+  margin: 0 20px;
+}
+
+#container header h1, #container header h1 a {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 200;
+  line-height: normal;
+}
+
+#container header h1 a {
+  color: {{ background_font_color }};
+  text-decoration: none;
+}
+
+#container header h1 a:hover {
+  color: {{ background_font_color }};
+}
+
+#container #main {
+  background-color: {{ content_background_color }};
+  color: {{ content_font_color }};
+  min-height: 520px;
+  padding: 25px;
+  {% if config['apply_rounded_corners_and_shadows_to_content_area'] %}
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -webkit-box-shadow: 0 1px 3px #cccccc;
+    -moz-box-shadow: 0 1px 3px #cccccc;
+    box-shadow: 0 1px 3px #cccccc;
+  {% endif %}
+}
+
+#container #main a {
+  color: {{ content_link_color }};
+}
+
+#container #main a:hover {
+  color: {{ content_link_hover_color }};
+}
+
+#container #main #sidebar {
+  background-color: {{ sidebar_background_color }};
+  float: left;
+  min-height: 125px;
+  padding: 10px;
+  width: 160px;
+}
+
+#container #main #sidebar h4 {
+  {% if config['display_simplified_sidebar_headers' %}
+    border-bottom: 1px solid {{ sidebar_separator_color }};
+    color: {{ sidebar_font_color }};
+    font-size: 12px;
+    font-variant: small-caps;
+    margin: 0 5px;
+    padding-bottom: 5px;
+    text-transform: lowercase;
+  {% else %}
+    background-color: {{ sidebar_highlight_color }};
+    color: {{ sidebar_font_color }};
+    font-size: 14px;
+    padding: 5px;
+  {% endif %}
+}
+
+#container #main #sidebar ul {
+  font-size: 12px;
+  margin-bottom: 15px;
+  {% unless config['display_sidebar_separators'] %}
+    margin-top: 4px;
+  {% endunless %}
+}
+
+#container #main #sidebar ul:last-child {
+  margin-bottom: 0;
+}
+
+#container #main #sidebar ul li {
+  {% if config['display_sidebar_separators'] %}
+    border-bottom: 1px solid {{ sidebar_separator_color }};
+  {% endif %}
+  color: {{ sidebar_font_color }};
+}
+
+#container #main #sidebar ul li:last-child {
+  border: 0;
+}
+
+#container #main #sidebar ul li a {
+  color: {{ sidebar_link_color }};
+  display: block;
+  {% if config['display_sidebar_separators'] %}
+    padding: 8px 7px;
+  {% else %}
+    padding: 4px 7px;
+  {% endif %}
+}
+
+#container #main #sidebar ul li a:hover {
+  color: {{ sidebar_link_hover_color }};
+}
+
+#container #main #sidebar p {
+  margin-bottom: 15px;
+}
+
+#container #main #sidebar p select {
+  width: 100%;
+}
+
+#container #main #sidebar #search {
+  margin-top: 15px;
+}
+
+#container #main #sidebar #search input {
+  border: 1px solid #C9C2C1;
+  padding: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  outline: auto 0 -webkit-focus-ring-color;
+  width: 130px;
+}
+
+#container #main #content {
+  float: right;
+  width: 700px;
+}
+
+#container #main #content #search {
+  text-align: right;
+}
+
+#container #main #content #search input {
+  line-height: 15px;
+  margin-top: -1px;
+}
+
+#container #main #content nav.pagination {
+  clear: both;
+  display: block;
+  margin-top: 15px;
+  padding: 10px 0;
+  text-align: center;
+}
+
+#container #main #content nav.pagination span {
+  color: {{ content_font_color }};
+  padding: 10px 5px;
+}
+
+#container #main #content nav.pagination span.current {
+  font-weight: bold;
+}
+
+#container #main #content nav.pagination a {
+  color: {{ content_link_color }};
+}
+
+#container #main #content nav.pagination a:hover {
+  color: {{ content_link_hover_color }};
+}
+
+#container #main #content #product-list .product .image {
+  float: left;
+  height: 77px;
+  width: 77px;
+}
+
+#container #main #content #product-list .product .image img {
+  border: 1px solid {{ content_outline_color }};
+}
+
+#container #main #content #product-list .product .content {
+  float: right;
+  width: 605px;
+}
+
+#container #main #content #product-list .product .content h2 {
+  margin-bottom: 5px;
+}
+
+#container #main #content #product-grid .product {
+  float: left;
+  height: 252px;
+  margin: 0 0 5px 22px;
+  overflow: hidden;
+  width: 202px;
+}
+
+#container #main #content #product-grid .product a {
+  display: block;
+}
+
+#container #main #content #product-grid .product a.image {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  {% if config['display_product_image_borders'] %}
+    border: 1px solid {{ content_outline_color }};
+  {% endif %}
+  height: 200px;
+  width: 200px;
+}
+
+#container #main #content #product-grid .product a.info {
+  padding: 5px;
+  text-align: center;
+}
+
+#container #main #content #product h2 {
+  margin-bottom: 14px;
+}
+
+#container #main #content #product h2 small {
+  font-size: 50%;
+}
+
+#container #main #content #product #images {
+  float: left;
+  width: 202px;
+}
+
+#container #main #content #product #images li {
+  float: left;
+  margin-bottom: 15px;
+}
+
+#container #main #content #product #images li + li {
+  height: 77px;
+  text-align: center;
+  width: 101px;
+}
+
+#container #main #content #product #images img {
+  {% if config['display_product_image_borders'] %}
+    border: 1px solid {{ content_outline_color }};
+  {% endif %}
+}
+
+#container #main #content #product #body {
+  float: right;
+  width: 480px;
+}
+
+#container #main #content #product #body h2 {
+  margin-bottom: 5px;
+}
+
+#container #main #content #product #body h3 {
+  margin: 30px 0 5px 0;
+}
+
+#container #main #content #product #body #variations {
+  margin: 14px 0;
+}
+
+#container #main #content #product #body #variations #cart_variation_id {
+  width: 200px;
+}
+
+#container #main #content #product #body #soundcloud {
+  margin-bottom: 14px;
+}
+
+#container #main #content #product #body ul, #main #content #product #body ol {
+  margin: 14px 0 14px 25px;
+}
+
+#container #main #content #product #body ul li, #main #content #product #body ol li {
+  padding: 2px 0;
+}
+
+#container #main #content #product #body #social {
+  margin: 14px 0;
+}
+
+#container #main #content #product #body #social li {
+  float: left;
+  width: 60px;
+}
+
+#container #main #content #product #body #social li iframe {
+  margin: auto 0;
+}
+
+#container #main #content #order h2 {
+  margin-bottom: 5px;
+}
+
+#container #main #content #order table {
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+#container #main #content #order table thead th, #container #main #content #order table tbody td {
+  line-height: 18px;
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+#container #main #content #order table thead th {
+  font-weight: bold;
+}
+
+#container #main #content #order table thead th {
+  vertical-align: bottom;
+}
+
+#container #main #content #order table tbody td {
+  border-top: 1px solid {{ content_outline_color }};
+}
+
+#container #main #content #order table tbody td + td {
+  text-align: right;
+  width: 115px;
+}
+
+#container #main #content #order table#metadata td {
+  width: 50%;
+}
+
+#container #main #content #order table#metadata td + td {
+  text-align: left;
+}
+
+#container #main #content #order table tbody td a {
+  text-decoration: underline;
+}
+
+#container #main #content #order #question {
+  font-size: 12px;
+  text-align: center;
+}
+
+#container #main #content #news article header {
+  border-bottom: 1px solid {{ content_outline_color }};
+  font-size: 24px;
+  line-height: normal;
+  margin: 0 0 7px 0;
+  padding: 0 0 7px 0;
+}
+
+#container #main #content #news article header a {
+  color: {{ content_font_color }};
+}
+
+#container #main #content #news article header a:hover {
+  color: {{ content_link_hover_color }};
+}
+
+#container #main #content #news article footer {
+  color: {{ content_font_color }};
+  font-size: 11px;
+  margin: 14px 0 0 0;
+  padding: 0;
+}
+
+#container #main #content #news article footer .social {
+  margin: 7px 0 0 0;
+}
+
+#container #main #content #news article footer .social li {
+  float: left;
+  width: 60px;
+}
+
+#container #main #content #news article footer .social li iframe {
+  margin: auto 0;
+}
+
+#container #main #content #news article + article {
+  margin-top: 50px;
+}
+
+#container #main #content #news #subscribe {
+  color: {{ content_font_color }};
+  font-size: 11px;
+  margin: 14px 0 0 0;
+  padding: 0;
+  text-align: center;
+}
+
+#container #main #content #history .history-item #images {
+  float: left;
+  width: 202px;
+}
+
+#container #main #content #history .history-item #images li {
+  float: left;
+  margin-bottom: 15px;
+}
+
+#container #main #content #history .history-item #images li + li {
+  height: 77px;
+  text-align: center;
+  width: 101px;
+}
+
+#container #main #content #history .history-item #body {
+  float: right;
+  width: 480px;
+}
+
+#container #main #content #history .history-item #body h2 {
+  margin-bottom: 5px;
+}
+
+#container #main #content #history .history-item #body h2 small {
+  font-size: 50%;
+}
+
+#container #main #content #history .history-item #body #release-information {
+  font-size: 12px;
+}
+
+#container #main #content #history .history-item #body ul {
+  list-style-type: disc;
+  margin: 14px 0 14px 25px;
+}
+
+#container #main #content #history .history-item #body ul li {
+  padding: 2px 0;
+}
+
+#container #main #content #history .history-item + .history-item {
+  margin-top: 25px;
+}
+
+#container #main #content #gallery .gallery-item {
+  float: left;
+  height: 202px;
+  margin: 0 0 22px 22px;
+  overflow: hidden;
+  width: 202px;
+}
+
+#container #main #content #gallery .gallery-item a {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  {% if config['display_gallery_image_borders'] %}
+    border: 1px solid {{ content_outline_color }};
+  {% endif %}
+  display: block;
+  height: 200px;
+  width: 200px;
+}
+
+#container #main #content #contact form input {
+  border: 1px solid #ddd;
+  border-top: 1px solid #bbb;
+  margin: 5px 0;
+  padding: 5px;
+  width: 275px;
+}
+
+#container #main #content #contact form textarea {
+  border: 1px solid #ddd;
+  border-top: 1px solid #bbb;
+  height: 150px;
+  padding: 5px;
+  width: 436px;
+}
+
+#container #main #content #roster .roster-item #images {
+  float: left;
+  width: 202px;
+}
+
+#container #main #content #roster .roster-item #images li {
+  float: left;
+  margin-bottom: 15px;
+}
+
+#container #main #content #roster .roster-item #images li + li {
+  height: 77px;
+  text-align: center;
+  width: 101px;
+}
+
+#container #main #content #roster .roster-item #body {
+  float: right;
+  width: 480px;
+}
+
+#container #main #content #roster .roster-item #body h2 {
+  margin-bottom: 5px;
+}
+
+#container #main #content #roster .roster-item #body h2 a {
+  color: {{ content_font_color }};
+}
+
+#container #main #content #roster .roster-item #body h2 small {
+  font-size: 50%;
+}
+
+#container #main #content #roster .roster-item + .roster-item {
+  margin-top: 25px;
+}
+
+#container #main #content .roster-item h2 {
+  margin-bottom: 14px;
+}
+
+#container #main #content .roster-item h2 small {
+  font-size: 50%;
+}
+
+#container #main #content .roster-item #images {
+  float: left;
+  width: 202px;
+}
+
+#container #main #content .roster-item #images li {
+  float: left;
+  margin-bottom: 15px;
+}
+
+#container #main #content .roster-item #images li + li {
+  height: 77px;
+  text-align: center;
+  width: 101px;
+}
+
+#container #main #content .roster-item #images img {
+  {% if config['display_product_image_borders'] %}
+    border: 1px solid {{ content_outline_color }};
+  {% endif %}
+}
+
+#container #main #content .roster-item #body {
+  float: right;
+  width: 480px;
+}
+
+#container #main #content .roster-item #body h2 {
+  margin-bottom: 5px;
+}
+
+#container #main #content .roster-item #body h3 {
+  margin: 30px 0 5px 0;
+}
+
+#container #main #content .roster-item #body #soundcloud {
+  margin-bottom: 14px;
+}
+
+#container #main #content .roster-item #body ul, #main #content .roster-item #body ol {
+  list-style-type: disc;
+  margin: 14px 0 14px 25px;
+}
+
+#container #main #content .roster-item #body ul li, #main #content .roster-item #body ol li {
+  padding: 2px 0;
+}
+
+#container #main #content .roster-item #product-grid, #container #main #content .roster-item #history {
+  margin-top: 50px;
+}
+
+#container #main #content .roster-item #product-grid .more-products a {
+  margin: 95px 0;
+  opacity: 1.0;
+}
+
+#container footer {
+  font-size: 11px;
+  margin: 20px 0;
+  padding: 0 5px;
+}
+
+.clearfix {
+  clear: both;
+}

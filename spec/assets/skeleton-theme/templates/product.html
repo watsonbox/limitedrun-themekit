@@ -1,0 +1,105 @@
+<div id="product">
+  <h2>{{ product.name }}{% if product.music_catalog_number %} <small>{{ product.music_catalog_number }}</small>{% endif %}</h2>
+
+  <ul id="images">
+    {% for image in product.images %}
+      <li>
+        <a href="{{ image.url }}" target="_blank">
+          {% if forloop.first %}
+            {{ product.images.first.v200_url | img_tag: 'thumbnail' }}
+          {% else %}
+            {{ image.v075_url | img_tag: 'thumbnail' }}
+          {% endif %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div id="body">
+    {% if product.soundcloud_playlist_id %}
+      <div id="soundcloud">
+        <iframe width="100%" height="300" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F{{ product.soundcloud_playlist_id }}&show_artwork=false&show_play_count=false&color={{ config['soundcloud_player_color'] | replace:'#','' }}"></iframe>
+      </div>
+    {% endif %}
+
+    <div id="description">
+      {{ product.description | simple_format }}
+    </div>
+
+    <div id="variations">
+      {% if product.available? %}
+        <p>
+          <select id="cart_variation_id">
+            {% unless config['supress_select_option'] and product.variations.size == 1 %}
+              <option>Select...</option>
+            {% endunless %}
+            {% for variation in product.variations %}
+              {% if variation.available? %}
+                <option value="{{ variation.id }}">{{ variation.name }} - {{ variation.price | money }}</option>
+              {% else %}
+                <option disabled="disabled">{{ variation.name }} - {{ variation.price | money }} (Out of Stock)</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+  
+          <button class="btn" onclick="javascript:Store.cart.add(document.getElementById('cart_variation_id').options[document.getElementById('cart_variation_id').selectedIndex].value);return false;">Add to Cart</button>
+        </p>
+      {% elsif product.announced? %}
+        <p>This item is coming soon.<p>
+      {% elsif product.unavailable? %}
+        <p>This item isn't currently available.<p>
+      {% elsif product.unlisted? %}
+        <p>This item isn't listed. That means it isn't visible to your customers.<p>
+      {% endif %}
+    </div>
+
+    {% if product.music_pressing_information %}
+      <h3>Pressing Information</h3>
+      {{ product.music_pressing_information | simple_format }}
+    {% endif %}
+
+    {% if product.music_track_listings %}
+      <h3>Tracks</h3>
+
+      <ol>
+        {% for track in product.music_track_listings %}
+          <li>{{ track.id3_track_name }}</li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+
+    {% if config['display_tweet_button'] or config['display_like_button'] %}
+      <ul id="social">
+        {% if config['display_tweet_button'] %}
+          <li>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-text="{{ product.name | escape }} at {{ store.name | escape }}" data-count="none">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </li>
+        {% endif %}
+        {% if config['display_like_button'] %}
+          <li>
+            <iframe src="//www.facebook.com/plugins/like.php?href={{ store.url }}{{ product.url }}&send=false&layout=button_count&width=52&show_faces=false&action=like&colorscheme=light&font&height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:52px; height:35px;" allowTransparency="true"></iframe>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+
+  <div class="clearfix"></div>
+</div>
+
+{% if product.eligible_for_availability_notices? %}
+  <div id="availability-request" onclick="javascript:Store.requestNotification('Product', {{ product.id }});">
+    {% if product.announced? %}
+      Want an email when this<br/>
+      becomes available?
+    {% else %}
+      Looking for something<br/>
+      that's out of stock?
+    {% endif %}
+  </div>
+
+  <script type="text/javascript">
+    window.setTimeout(function() {document.getElementById('availability-request').setAttribute('class', 'reveal');}, 1000);
+  </script>
+{% endif %}

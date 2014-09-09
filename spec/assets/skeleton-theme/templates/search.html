@@ -1,0 +1,33 @@
+<div id="product-grid">
+  {% for product in products %}
+    <div class="product">
+      <a class="image" href="{{ product.url }}" style="{% if product.images.size > 0 %}background-image:url({{ product.images.first.v200_url }});{% endif %}">
+        &nbsp;
+      </a>
+      <a class="info" href="{{ product.url }}">
+        {{ product.name }} - 
+        
+        {% assign out_of_stock = true %}
+
+        {% if product.available? %}
+          {% for variation in product.variations %}
+            {% if variation.available? %}
+              {% assign out_of_stock = false %}
+            {% endif %}
+          {% endfor %}
+
+          {% if out_of_stock %}
+            Out of Stock
+          {% else %}
+            {{ product.price_range | money | join: ' - ' }}
+          {% endif %}
+
+        {% elsif product.announced? %}
+          Coming Soon
+        {% elsif product.unavailable? %}
+          Unavailable
+        {% endif %}
+      </a>
+    </div>
+  {% endfor %}
+</div>

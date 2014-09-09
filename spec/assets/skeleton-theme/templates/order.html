@@ -1,0 +1,119 @@
+<div id="order">
+  <h2>Order {{ order.number }}</h2>
+  
+  {% if order.attempted? %}
+    <table id="metadata">
+      <tr>
+        <td>
+          <p><strong>State</strong><br/>{{ order.state }}</p>
+          <p><strong>Transaction</strong><br/>{{ order.transaction_id }}</p>
+        </td>
+        <td>
+          {% if order.customer %}
+            <ul>
+              <li><strong>Customer:</strong></li>
+              {% if order.customer.first_name or order.customer.last_name %}
+                <li>{{ order.customer.first_name }} {{ order.customer.last_name }}</li>
+              {% endif %}
+              <li>{{ order.customer.email }}</li>
+            </ul>
+          {% endif %}
+
+          <br class="clearfix"/>
+
+          {% if order.shipping_address %}
+            <ul>
+              <li><strong>Ship to:</strong></li>
+              <li>{{ order.shipping_address.first_name }} {{ order.shipping_address.last_name }}</li>              
+              <li>
+                {{ order.shipping_address.street_address_1 }}<br/>
+              {% if order.shipping_address.street_address_2 %}
+                {{ order.shipping_address.street_address_2 }}<br/>
+              {% endif %}
+                {{ order.shipping_address.city }},
+                {{ order.shipping_address.state }}
+                {{ order.shipping_address.postal_code }}
+                {{ order.shipping_address.country }}
+              </li>
+            </ul>
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+  {% endif %}
+
+  <table>
+    <thead>
+      <tr>
+        <th colspan="4">Items</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order.items %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.unit_price | money }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.total_price | money }}</td>
+        </tr>
+      {% endfor %}
+
+      {% unless order.digital %}
+        <tr>
+          <td></td>
+          <td colspan="2">Subtotal:</td>
+          <td>{{ order.subtotal | money }}</td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td colspan="2">Shipping:</td>
+          <td>{{ order.shipping | money }}</td>
+        </tr>
+      {% endunless %}
+
+      {% if order.discount? %}
+        <tr>
+          <td></td>
+          <td colspan="2">Discount:</td>
+          <td>{{ order.discount_amount | money }}</td>
+        </tr>
+      {% endif %}
+
+      <tr>
+        <td></td>
+        <td colspan="2">Total:</td>
+        <td>{{ order.total_price | money_with_currency }}</td>
+      </tr>
+
+      {% unless order.attempted? %}
+        <tr>
+          <td></td>
+          <td colspan="3">
+            <form onsubmit="javascript:Store.pay('{{ order.key }}', '{{ order.paypal_pay_key }}');return false;">
+              <button class="btn" type="submit">Pay Now</button>
+            </form>
+          </td>
+      {% endunless %}
+    </tbody>
+  </table>
+
+  {% if order.attempted? and order.downloads.size > 0 %}
+    <table>
+      <thead>
+        <tr>
+          <th>Instant Downloads</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for download in order.downloads %}
+          <tr>
+            <td>{{ download | link_to_download }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  <p id="question">Have a question or problem about this order? Please reply to your confirmation email.</p>
+</div>

@@ -5,10 +5,12 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'limitedrun-themekit/server'
+require 'limitedrun-themekit'
 require 'capybara/rspec'
 
-Capybara.app = Sinatra::Application.new
+Capybara.app = Limitedrun::Themekit::Server.new
+
+Limitedrun::Themekit::Config.theme_path = 'spec/assets/skeleton-theme'
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true

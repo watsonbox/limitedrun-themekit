@@ -1,0 +1,62 @@
+<div id="contact">
+  <h2>{{ store.mailbox.title }}</h2>
+
+  {% comment %}
+    The below if / elsif is important to show the user whether their
+    message was successfully received or if there were any errors.
+  {% endcomment %}
+  
+  {% if message.received %}
+    <p>Thanks, we've received your message!</p>
+  {% elsif message.errors %}
+    <p>There was a problem sending that message.</p>
+  
+    <ul>
+      {% for error in message.errors %}
+        <li>{{ error }}.</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  
+  {% contact_form %}
+    {% comment %}
+      The contact_form tag has three required fields:
+        * message[name]
+        * message[email]
+        * message[body]
+  
+      There is also an option field that you can add:
+        * message[subject]
+    {% endcomment %}
+  
+    <p>
+      <label>What's your name?</label><br/>
+      <input type="text" name="message[name]" value="{{ message.name }}"/>
+    </p>
+  
+    <p>
+      <label>What's your email address?</label><br/>
+      <input type="text" name="message[email]" value="{{ message.email }}"/>
+    </p>
+  
+    <p>
+      <textarea name="message[body]">{{ message.body }}</textarea>
+    </p>
+  
+    {% comment %}
+      The below captcha tag is required for this contact form.
+  
+      The follow themes are available:
+        * red
+        * white
+        * blackglass
+        * clean
+    {% endcomment %}
+  
+    {% captcha clean %}
+  
+    <p>
+      <button type="submit">Send Message</button>
+    </p>
+  {% endcontact_form %}
+</div>

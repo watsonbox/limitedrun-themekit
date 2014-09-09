@@ -1,0 +1,43 @@
+<div id="product-grid">
+  {% paginate store.events by 30 %}
+    {% for event in store.events %}
+      <div class="product">
+        <a class="image" href="{{ event.url }}" style="{% if event.images.size > 0 %}background-image:url({{ event.images.first.v200_url }});{% endif %}">
+          &nbsp;
+        </a>
+        <a class="info" href="{{ event.url }}">
+          {% if event.starts_at %}
+            {{ event.starts_at | date: "%b" }} {{ event.starts_at | date: "%d" | ordinalize }} -
+          {% else %}
+            TBA -
+          {% endif %}
+          
+          {{ event.name }} - 
+          
+          {% assign out_of_stock = true %}
+
+          {% if event.available? %}
+            {% for variation in event.variations %}
+              {% if variation.available? %}
+                {% assign out_of_stock = false %}
+              {% endif %}
+            {% endfor %}
+
+            {% if out_of_stock %}
+              Sold Out
+            {% else %}
+              {{ event.price_range | money | join: ' - ' }}
+            {% endif %}
+
+          {% elsif event.announced? %}
+            Coming Soon
+          {% elsif event.unavailable? %}
+            Unavailable
+          {% endif %}
+        </a>
+      </div>
+    {% endfor %}
+
+    {{ store.events_pagination }}
+  {% endpaginate %}
+</div>

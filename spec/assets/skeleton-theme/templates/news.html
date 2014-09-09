@@ -1,0 +1,37 @@
+<div id="news">
+  {% paginate news.items by 5 %}
+    {% for item in news.items %}
+      <article>
+        <header>{{ item | link_to_news_item }}</header>
+        <section>
+          {{ item.body }}
+        </section>
+        <footer>
+          Posted on {{ item.published_at | date: "%B" }} {{ item.published_at | date: "%d" | ordinalize }}, {{ item.published_at | date: "%Y" }}
+          
+          {% if config['display_news_tweet_button'] or config['display_news_like_button'] %}
+            <ul class="social">
+              {% if config['display_news_tweet_button'] %}
+                <li>
+                  <a href="https://twitter.com/share" class="twitter-share-button" data-text="{{ item.title | escape }} at {{ store.name | escape }}" data-url="{{ store.url }}{{ item.url }}" data-count="none">Tweet</a>
+                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </li>
+              {% endif %}
+              {% if config['display_news_like_button'] %}
+                <li>
+                  <iframe src="//www.facebook.com/plugins/like.php?href={{ store.url }}{{ item.url }}&send=false&layout=button_count&width=52&show_faces=false&action=like&colorscheme=light&font&height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:52px; height:35px;" allowTransparency="true"></iframe>
+                </li>
+              {% endif %}
+            </ul>
+          {% endif %}
+        </footer>
+      </article>
+    {% endfor %}
+    
+    <div class="clearfix"></div>
+    
+    {{ news.items_pagination }}
+
+    <div class="clearfix"></div>
+  {% endpaginate %}
+</div>

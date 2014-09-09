@@ -1,0 +1,41 @@
+<div id="roster">
+  {% paginate roster.items by 25 %}
+    {% for item in roster.items %}
+      <div class="roster-item">
+        <ul id="images">
+          {% if item.images.size > 0 %}
+            <li>
+              <a href="{{ item.url }}">
+                {{ item.images.first.v200_url | img_tag: 'thumbnail' }}
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      
+        <div id="body">
+          <h2>{{ item | link_to_roster_item }}</h2>
+
+          {% unless config['hide_roster_item_descriptions_on_roster_page'] %}
+            <div id="description">
+              {{ item.description | simple_format }}
+            </div>
+          {% endunless %}
+          
+          <p class="read-more">
+            <a href="{{ item.url }}">
+              Read more &raquo;
+            </a>
+          </p>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+    {% endfor %}
+
+    <div class="clearfix"></div>
+
+    {{ roster.items_pagination }}
+
+    <div class="clearfix"></div>
+  {% endpaginate %}
+</div>

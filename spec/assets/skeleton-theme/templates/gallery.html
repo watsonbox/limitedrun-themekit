@@ -1,0 +1,13 @@
+{% paginate gallery.items by 30 %}
+  <div id="gallery">
+    {% for item in gallery.items %}
+      <div class="gallery-item">
+        <a href="{{ item.url }}"  style="background-image:url({{ item.v200_url }});">
+          &nbsp;
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+  {{ gallery.items_pagination }}
+{% endpaginate %}

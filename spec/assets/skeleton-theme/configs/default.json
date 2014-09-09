@@ -1,0 +1,314 @@
+{
+  "name": "Skeleton",
+  "description": "<p>A perfect basic theme for customizing.</p><ul class=\"features\"><li>Header Image Upload</li><li>Background Image Upload</li><li>Custom Color Pickers</li><li>Google Analytics</li><li>Product Search</li><li>Tweet &amp; Like Buttons</li><li>FancyBox Image Zooming</li><li>All Site Modules</li></ul>",
+  "author": {
+    "name": "Limited Run",
+    "website": "http://limitedrun.com"
+  },
+  "sort": 13,
+  "images": [
+    {
+      "thumbnail": "https://d2hzwnl4ytplf6.cloudfront.net/themes/skeleton-1-thumb.png",
+      "original": "https://d2hzwnl4ytplf6.cloudfront.net/themes/skeleton-1.png"
+    },
+    {
+      "thumbnail": "https://d2hzwnl4ytplf6.cloudfront.net/themes/skeleton-2-thumb.png",
+      "original": "https://d2hzwnl4ytplf6.cloudfront.net/themes/skeleton-2.png"
+    }
+  ],
+  "settings": {
+    "background_image_url": {
+      "format": "image",
+      "label": "Background Image URL",
+      "help": "Enter an image URL or choose an image file to upload.",
+      "placeholder": "http://",
+      "position": 0
+    },
+
+    "background_image_repeat": {
+      "format": "boolean",
+      "label": "Tile Background Image",
+      "default": false,
+      "position": 1
+    },
+
+    "header_image_url": {
+      "format": "image",
+      "label": "Header Image URL (950px width max)",
+      "help": "Enter an image URL or choose an image file to upload.",
+      "placeholder": "http://",
+      "position": 2
+    },
+
+    "header_image_centered": {
+      "format": "boolean",
+      "label": "Center Header Image",
+      "default": true,
+      "position": 3
+    },
+
+    "background_color": {
+      "format": "color",
+      "default": "#f8f8f8",
+      "label": "Background Color",
+      "position": 4
+    },
+    "background_font_color": {
+      "format": "color",
+      "default": "#333333",
+      "label": "Background Font Color",
+      "position": 5
+    },
+    "background_link_color": {
+      "format": "color",
+      "default": "#0e6aa9",
+      "label": "Background Link Color",
+      "position": 6
+    },
+    "background_link_hover_color": {
+      "format": "color",
+      "default": "#12497a",
+      "label": "Background Link Hover Color",
+      "position": 7
+    },
+
+    "view_cart_background_color": {
+      "format": "color",
+      "default": "#e9e9e9",
+      "label": "View Cart Background Color",
+      "position": 8
+    },
+    "view_cart_background_hover_color": {
+      "format": "color",
+      "default": "#d9d9d9",
+      "label": "View Cart Background Hover Color",
+      "position": 9
+    },
+    "view_cart_font_color": {
+      "format": "color",
+      "default": "#333333",
+      "label": "View Cart Font Color",
+      "position": 10
+    },
+    "view_cart_font_hover_color": {
+      "format": "color",
+      "default": "#000000",
+      "label": "View Cart Font Hover Color",
+      "position": 11
+    },
+
+    "sidebar_background_color": {
+      "format": "color",
+      "default": "#f9f9f9",
+      "label": "Sidebar Background Color",
+      "position": 12
+    },
+    "sidebar_highlight_color": {
+      "format": "color",
+      "default": "#efefef",
+      "label": "Sidebar Highlight Color",
+      "position": 13
+    },
+    "sidebar_separator_color": {
+      "format": "color",
+      "default": "#efefef",
+      "label": "Sidebar Separator Color",
+      "position": 14
+    },
+    "sidebar_font_color": {
+      "format": "color",
+      "default": "#333333",
+      "label": "Sidebar Font Color",
+      "position": 15
+    },
+    "sidebar_link_color": {
+      "format": "color",
+      "default": "#0e6aa9",
+      "label": "Sidebar Link Color",
+      "position": 16
+    },
+    "sidebar_link_hover_color": {
+      "format": "color",
+      "default": "#12497a",
+      "label": "Sidebar Link Hover Color",
+      "position": 17
+    },
+
+    "content_background_color": {
+      "format": "color",
+      "default": "#ffffff",
+      "label": "Content Background Color",
+      "position": 18
+    },
+    "content_outline_color": {
+      "format": "color",
+      "default": "#e5e5e5",
+      "label": "Content Outline Color",
+      "position": 19
+    },
+    "content_font_color": {
+      "format": "color",
+      "default": "#333333",
+      "label": "Content Font Color",
+      "position": 20
+    },
+    "content_link_color": {
+      "format": "color",
+      "default": "#0e6aa9",
+      "label": "Content Link Color",
+      "position": 21
+    },
+    "content_link_hover_color": {
+      "format": "color",
+      "default": "#12497a",
+      "label": "Content Link Hover Color",
+      "position": 22
+    },
+
+    "soundcloud_player_color": {
+      "format": "color",
+      "default": "#0e6aa9",
+      "label": "SoundCloud Player Color",
+      "position": 23
+    },
+
+    "sidebar_info_section_name": {
+      "format": "text",
+      "default": "Info",
+      "label": "Sidebar Info Section Name",
+      "position": 24
+    },
+    "sidebar_store_section_name": {
+      "format": "text",
+      "default": "Store",
+      "label": "Sidebar Store Section Name",
+      "position": 25
+    },
+
+    "google_analytics_id": {
+      "format": "text",
+      "label": "Google Analytics Tracking ID",
+      "placeholder": "UA-XXXXXXXX-X",
+      "position": 26
+    },
+
+    "display_sidebar_separators": {
+      "format": "boolean",
+      "default": true,
+      "label": "Visually Separate Sidebar Links",
+      "position": 27
+    },
+
+    "display_simplified_sidebar_headers": {
+      "format": "boolean",
+      "default": false,
+      "label": "Visually Simplify Sidebar Headers",
+      "position": 28
+    },
+
+    "display_sidebar_product_search": {
+      "format": "boolean",
+      "default": false,
+      "label": "Display Product Search Field in Sidebar",
+      "position": 29
+    },
+
+    "display_sidebar_roster_items_as_list": {
+      "format": "boolean",
+      "default": false,
+      "label": "Display Roster Items in Sidebar as a List",
+      "position": 30
+    },
+
+    "display_sidebar_roster_items_as_select": {
+      "format": "boolean",
+      "default": false,
+      "label": "Display Roster Items in Sidebar as a Drop Down",
+      "position": 31
+    },
+
+    "hide_roster_item_descriptions_on_roster_page": {
+      "format": "boolean",
+      "default": false,
+      "label": "Hide Roster Item Descriptions on Roster Page",
+      "position": 32
+    },
+
+    "display_product_image_borders": {
+      "format": "boolean",
+      "default": false,
+      "label": "Add Borders to Product Images",
+      "position": 33
+    },
+
+    "display_gallery_image_borders": {
+      "format": "boolean",
+      "default": false,
+      "label": "Add Borders to Gallery Images",
+      "position": 34
+    },
+
+    "display_tweet_button": {
+      "format": "boolean",
+      "default": false,
+      "label": "Display a Twitter Tweet Button on Product Pages",
+      "position": 35
+    },
+    "display_like_button": {
+      "format": "boolean",
+      "default": false,
+      "label": "Display a Facebook Like Button on Product Pages",
+      "position": 36
+    },
+    
+    "display_news_tweet_button": {
+      "format": "boolean",
+      "default": false,
+      "label": "Display a Twitter Tweet Button on News Posts",
+      "position": 37
+    },
+    "display_news_like_button": {
+      "format": "boolean",
+      "default": false,
+      "label": "Display a Facebook Like Button on News Posts",
+      "position": 38
+    },
+
+    "use_fancybox_image_zooming": {
+      "format": "boolean",
+      "default": true,
+      "label": "Use FancyBox Image Zooming on Product Pages (Loads jQuery)",
+      "position": 39
+    },
+
+    "apply_rounded_corners_and_shadows_to_content_area": {
+      "format": "boolean",
+      "default": false,
+      "label": "Apply Rounded Corners & Shadows to the Content Area",
+      "position": 40
+    },
+    
+    "embed_google_maps_on_event_pages": {
+      "format": "boolean",
+      "default": true,
+      "label": "Embed Google Maps on Event Pages (Ticket Selling Module)",
+      "position": 41
+    },
+    
+    "supress_select_option": {
+      "format": "boolean",
+      "default": false,
+      "label": "Hide the 'Select...' option on product pages when there's only a single option.",
+      "position": 41
+    },
+    
+    "favicon_image_url": {
+      "format": "image",
+      "content_type": true,
+      "label": "Favicon Image URL",
+      "help": "Enter an image URL or choose an image file to upload.",
+      "placeholder": "http://",
+      "position": 43
+    }
+  }
+}

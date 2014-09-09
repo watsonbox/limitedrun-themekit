@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {{ store.name }}
+      {% if product %}
+        - {{ product.name }}
+      {% elsif page %}
+        - {{ page.title }}
+      {% endif %}
+    </title>
+
+  {% if product %}
+    <meta name="description" content="{{ product.description | strip_html | escape | strip_newlines }}"/>
+    <meta property="og:title" content="{{ product.name | escape }}"/>
+    <meta property="og:description" content="{{ product.description | strip_html | escape | strip_newlines }}"/>
+    <meta property="og:type" content="product"/>
+    <meta property="og:url" content="{{ store.url }}{{ product.url }}"/>
+    <meta property="og:image" content="{% if product.images.size > 0 %}{{ product.images.first.v600_url }}{% endif %}"/>
+    <meta property="og:site_name" content="{{ store.name }}"/>
+    <meta property="fb:admins" content="763253266"/>
+  {% elsif news and item %}
+    <meta name="description" content="{{ item.body | strip_html | escape | strip_newlines }}"/>
+    <meta property="og:title" content="{{ item.title | escape }}"/>
+    <meta property="og:description" content="{{ item.body | strip_html | escape | strip_newlines }}"/>
+    <meta property="og:type" content="news"/>
+    <meta property="og:url" content="{{ store.url }}{{ item.url }}"/>
+    <meta property="og:site_name" content="{{ store.name }}"/>
+    <meta property="fb:admins" content="763253266"/>
+  {% else %}
+    <meta property="og:title" content="{{ store.name }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ store.url }}"/>
+    <meta property="og:site_name" content="{{ store.name }}"/>
+    <meta property="fb:admins" content="763253266"/>
+  {% endif %}
+  
+  {% if store.news %}
+    <link rel="alternate" type="application/atom+xml" title="{{ store.name }} - {{ store.news.title }} Feed" href="{{ store.url }}{{ store.news.url }}.xml"/>
+  {% endif %}
+  
+    {{ config['favicon_image_url'] | favicon_tag }}
+
+    <link href="http://s1.limitedrun.com/fancybox/jquery.fancybox-1.3.4.css" media="screen" rel="stylesheet" type="text/css"/>
+    {{ 'default.css' | asset_url | stylesheet_tag: 'screen' }}
+    
+    {% if config['google_analytics_id'] %}
+      <script type="text/javascript">
+        try {
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '{{ config['google_analytics_id'] }}']);
+          _gaq.push(['_setDomainName', window.location.host]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        } catch(e){}
+      </script>
+    {% endif %}
+  </head>
+  <body>
+    <a id="cart" onclick="javascript:Store.cart.show();">
+      View Cart
+    </a>
+
+    <div id="container">
+      <header>
+        {% if config['header_image_url'] %}
+          <div {% if config['header_image_centered'] %}class="center"{% endif %}><a href="/"><img src="{{ config['header_image_url'] }}"/></a></div>
+        {% else %}
+          <h1><a href="/">{{ store.name }}</a></h1>
+        {% endif %}
+      </header>
+
+      <div id="main">
+        <div id="sidebar">
+          {% if store.pages.size > 0 %}
+            <h4>{{ config['sidebar_info_section_name'] }}</h4>
+            <ul>
+              {% for page in store.pages %}
+                <li>{{ page | link_to_page }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          {% if config['display_sidebar_roster_items_as_list'] or config['display_sidebar_roster_items_as_select'] %}
+            {% if store.roster %}
+              <h4>{{ store.roster.title }}</h4>
+              {% if config['display_sidebar_roster_items_as_select'] %}
+                <p>
+                  <select onchange="if(this.options[this.selectedIndex].value !=''){window.top.location.href=this.options[this.selectedIndex].value}">
+                    <option value="">Select...</option>
+                    {% for i in store.roster.items %} 
+                      <option value="{{ i.url }}" {% if roster and item and item.url == i.url %}selected="selected"{% endif %}>{{ i.name }}</option> 
+                    {% endfor %} 
+                  </select>
+                </p>
+              {% else %}
+                <ul>
+                  {% for item in store.roster.items %}
+                    <li>{{ item | link_to_roster_item }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+          <h4>{{ config['sidebar_store_section_name'] }}</h4>
+          <ul>
+            {% for category in store.categories %}
+              <li>{{ category | link_to_category }}</li>
+            {% endfor %}
+          </ul>
+          
+          {% if config['display_sidebar_product_search'] %}
+            <h4>Search</h4>
+            <form id="search" action="/products/search" method="get">
+              <input type="input" name="q" value="{{ query }}"> <a href="#" onclick="javascript:document.getElementById('search').submit();">»</a>
+            </form>
+          {% endif %}
+        </div>
+
+        <div id="content">
+          {{ content }}
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+
+      <footer>
+        &copy; {{ 'now' | date: "%Y" }}, {{ store.name }} - Powered by <a href="http://limitedrun.com">Limited Run</a>
+      </footer>
+    </div>
+
+    <!-- The following store.js script is required for every page. Do not remove it. -->
+    {{ store_script_tag }}
+    <!-- /store.js -->
+
+    {% if config['use_fancybox_image_zooming'] %}
+      <script src="http://s1.limitedrun.com/jquery-1.7.1.min.js"></script>
+      <script src="http://s1.limitedrun.com/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+      <script type="text/javascript">
+        $('#product #images a, #history #images a, #gallery a, .roster-item #images a').fancybox({'overlayOpacity': 0.5});
+      </script>
+    {% endif %}
+  </body>
+</html>

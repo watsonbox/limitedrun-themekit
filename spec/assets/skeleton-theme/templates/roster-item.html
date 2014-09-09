@@ -1,0 +1,136 @@
+{% if section == 'products' %}
+  <div id="product-grid">
+    {% paginate item.products by 30 %}
+      {% for product in item.products %}
+        <div class="product">
+          <a class="image" href="{{ product.url }}" style="{% if product.images.size > 0 %}background-image:url({{ product.images.first.v200_url }});{% endif %}">
+            &nbsp;
+          </a>
+          <a class="info" href="{{ product.url }}">
+            {{ product.name }} - {{ product.price_range | money | join: ' - ' }}
+          </a>
+        </div>
+      {% endfor %}
+  
+      {{ item.products_pagination }}
+    {% endpaginate %}
+  </div>
+{% else %}
+  <div class="roster-item">
+    <h2>{{ item.name }}</h2>
+  
+    <ul id="images">
+      {% for image in item.images %}
+        <li>
+          <a href="{{ image.url }}" target="_blank">
+            {% if forloop.first %}
+              {{ item.images.first.v200_url | img_tag: 'thumbnail' }}
+            {% else %}
+              {{ image.v075_url | img_tag: 'thumbnail' }}
+            {% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  
+    <div id="body">
+      {% if item.soundcloud_playlist_id %}
+        <div id="soundcloud">
+          <iframe width="100%" height="300" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F{{ item.soundcloud_playlist_id }}&show_artwork=false&show_play_count=false&color={{ config['soundcloud_player_color'] | replace:'#','' }}"></iframe>
+        </div>
+      {% endif %}
+  
+      <div id="description">
+        {{ item.description | simple_format }}
+      </div>
+      
+      <ul>
+        {% for link in item.links %}
+          <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  
+    <div class="clearfix"></div>
+    
+    {% if item.history_items.size > 0 %}
+      <div id="history">
+        {% for history_item in item.history_items %}
+          <div class="history-item">
+            <ul id="images">
+              {% for image in history_item.images %}
+                <li>
+                  <a href="{{ image.url }}" target="_blank">
+                    {% if forloop.first %}
+                      {{ history_item.images.first.v200_url | img_tag: 'thumbnail' }}
+                    {% else %}
+                      {{ image.v075_url | img_tag: 'thumbnail' }}
+                    {% endif %}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          
+            <div id="body">
+              <h2>{{ history_item.name }}</h2>
+    
+              <div id="release-information">
+                {% comment %}
+                  The history_item.release_information attribute combines three attributes 
+                  into an array that can be passed to the join filter:
+                    * history_item.released_on
+                    * history_item.released_by
+                    * history_item.catalog_number
+    
+                  You can use each of the above three separate attributes rather 
+                  than the single release_information attribute.
+                {% endcomment %}
+    
+                {{ history_item.release_information | join: ' &middot; ' }}
+              </div>
+    
+              <div id="description">
+                {{ history_item.description | simple_format }}
+              </div>
+              
+              <ul>
+                {% for link in history_item.links %}
+                  <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+    
+            <div class="clearfix"></div>
+          </div>
+        {% endfor %}
+    
+        <div class="clearfix"></div>
+      </div>
+    {% endif %}
+    
+    {% if item.products.size > 0 %}
+      <div id="product-grid">
+        {% for product in item.products limit:5 %}
+          <div class="product">
+            <a class="image" href="{{ product.url }}" style="{% if product.images.size > 0 %}background-image:url({{ product.images.first.v200_url }});{% endif %}">
+              &nbsp;
+            </a>
+            <a class="info" href="{{ product.url }}">
+              {{ product.name }} - {{ product.price_range | money | join: ' - ' }}
+            </a>
+          </div>
+        {% endfor %}
+        
+        {% if item.products.size > 5 %}
+          <div class="product more-products">
+            <a class="info" href="{{ item.url }}/products">
+              View All Products &raquo;
+            </a>
+          </div>
+        {% endif %}
+      </div>
+  
+      <div class="clearfix"></div>
+    {% endif %}
+  </div>
+{% endif %}
